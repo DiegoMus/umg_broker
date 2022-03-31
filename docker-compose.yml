@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: broker
+    volumes:
+      - ./mosquitto:/mosquitto/:rw
+    ports:
+      - 1883:1883
+      - 9001:9001
+
+
+  node-red:
+    image: nodered/node-red:latest
+    container_name: nodered
+    environment:
+      - TZ=America/Guatemala
+    ports:
+      - "1880:1880"
+    volumes:
+      - node-red-data:/data
+
+volumes:
+  node-red-data:
