@@ -13,8 +13,11 @@
 ``
 mosquitto_sub -d -t topic/prueba
 ``
+
 3. Publisher:
+``
 mosquitto_pub -d -t topic/prueba -m "Hola Mundo UMG Coban MQTT"
+``
 
 
 
