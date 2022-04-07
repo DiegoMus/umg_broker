@@ -9,12 +9,12 @@
 
 int dato = 0;
 EspMQTTClient client(
-  "TIGO-7541",
-  "4D9697515469",
-  "192.168.0.7",  // MQTT Broker server ip
-  //"MQTTUsername",   // Can be omitted if not needed
-  //"MQTTPassword",   // Can be omitted if not needed
-  "TestClient",     // Client name that uniquely identify your device
+  "Tech_D0006404",
+  "TIGO2022",
+  "192.168.0.28",  // MQTT Broker server ip
+  "",   // Can be omitted if not needed
+  "",   // Can be omitted if not needed
+  "ESP32lora",     // Client name that uniquely identify your device
   1883              // The MQTT port, default to 1883. this line can be omitted
 );
 
@@ -33,13 +33,24 @@ void setup()
 // WARNING : YOU MUST IMPLEMENT IT IF YOU USE EspMQTTClient
 void onConnectionEstablished()
 {
+  // Subscribe to "mytopic/test" and display received message to Serial
+  client.subscribe("topic/lora", [](const String & payload) {
+  Serial.println(payload);
+  });
+
+ 
+
+  // Publish a message to "mytopic/test"
+  //client.publish("topic/prueba", "This is a message"); // You can activate the retain flag by setting the third parameter to true
+
 }
 
 void loop()
 {
-  dato=analogRead(A0);
-  String myString = String(dato);
+  
   client.loop();
-  client.publish("topic/prueba", myString);
+  dato++;
+  String myCadena = String(dato);
+  client.publish("topic/lora", myCadena );
   delay(5000);
 }
