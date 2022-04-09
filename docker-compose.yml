@@ -11,15 +11,15 @@ services:
       - 9001:9001
 
 
-  node-red:
-    image: nodered/node-red:latest
-    container_name: nodered
-    environment:
-      - TZ=America/Guatemala
-    ports:
-      - "1880:1880"
-    volumes:
-      - node-red-data:/data
+#  node-red:
+#    image: nodered/node-red:latest
+#    container_name: nodered
+#    environment:
+#      - TZ=America/Guatemala
+#    ports:
+#      - "1880:1880"
+#    volumes:
+#      - node-red-data:/data
 
-volumes:
-  node-red-data:
+#volumes:
+#  node-red-data:
