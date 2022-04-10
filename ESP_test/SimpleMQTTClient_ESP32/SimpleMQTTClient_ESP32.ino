@@ -1,3 +1,4 @@
+
 /*
   SimpleMQTTClient.ino
   The purpose of this exemple is to illustrate a simple handling of MQTT and Wifi connection.
@@ -9,11 +10,12 @@
 
 int dato = 0;
 EspMQTTClient client(
-  "TIGO-7541",
-  "4D9697515469",
-  "192.168.0.7",  // MQTT Broker server ip
-  //"MQTTUsername",   // Can be omitted if not needed
-  //"MQTTPassword",   // Can be omitted if not needed
+  "Tech_D0006404", //SSID
+  "TIGO2022", //Contraseña del WIFI
+  //"104.198.248.193",  // MQTT Broker server ip
+  //"gilda",   // Can be omitted if not needed
+  //"seguro",   // Can be omitted if not needed
+  "192.168.0.28",  //Dirección del Broker
   "TestClient",     // Client name that uniquely identify your device
   1883              // The MQTT port, default to 1883. this line can be omitted
 );

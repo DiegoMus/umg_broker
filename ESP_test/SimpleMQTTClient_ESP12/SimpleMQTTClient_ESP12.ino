@@ -6,13 +6,14 @@
 */
 
 #include "EspMQTTClient.h"
-
+int dato=0;
 EspMQTTClient client(
-  "WifiSSID",
-  "WifiPassword",
-  "192.168.1.100",  // MQTT Broker server ip
-  "MQTTUsername",   // Can be omitted if not needed
-  "MQTTPassword",   // Can be omitted if not needed
+  "Tech_D0006404",
+  "TIGO2022",
+  //"IP",  // MQTT Broker server ip
+  //"Usser",   // Can be omitted if not needed
+  //"Pass",   // Can be omitted if not needed
+  "192.168.0.28",
   "TestClient",     // Client name that uniquely identify your device
   1883              // The MQTT port, default to 1883. this line can be omitted
 );
@@ -32,26 +33,13 @@ void setup()
 // WARNING : YOU MUST IMPLEMENT IT IF YOU USE EspMQTTClient
 void onConnectionEstablished()
 {
-  // Subscribe to "mytopic/test" and display received message to Serial
-  client.subscribe("mytopic/test", [](const String & payload) {
-    Serial.println(payload);
-  });
-
-  // Subscribe to "mytopic/wildcardtest/#" and display received message to Serial
-  client.subscribe("mytopic/wildcardtest/#", [](const String & topic, const String & payload) {
-    Serial.println("(From wildcard) topic: " + topic + ", payload: " + payload);
-  });
-
-  // Publish a message to "mytopic/test"
-  client.publish("mytopic/test", "This is a message"); // You can activate the retain flag by setting the third parameter to true
-
-  // Execute delayed instructions
-  client.executeDelayed(5 * 1000, []() {
-    client.publish("mytopic/wildcardtest/test123", "This is a message sent 5 seconds later");
-  });
 }
 
 void loop()
 {
+  dato=analogRead(A0);
+  String myString = String(dato);
   client.loop();
+  client.publish("topic/8266", myString);
+  delay(5000);
 }
